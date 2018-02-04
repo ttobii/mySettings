@@ -2,12 +2,22 @@
 
 
 ; monitor off
-<^<!<#/::
+#/::
 	SendMessage 0x112, 0xF140, 0, , Program Manager ; start screensaver
 	SendMessage 0x112, 0xF170, 2, , Program Manager ; Monitor off
 Return
 
-/*
+; lock pc
+<^<!<#/::
+	Run rundll32.exe user32.dll`,LockWorkStation     ; Lock PC
+	Sleep 1000
+	SendMessage 0x112, 0xF170, 2, , Program Manager  ; Monitor off
+Return
+
+XButton2::Send, #{Tab} ; 5th mouse button
+
+
+/*q
 	mac style change
 */
 
@@ -27,9 +37,10 @@ Return
 <^Up::Send, #{Up}
 <^Down::Send, #{Down}
 
+#s::Send, ^s
 #w::Send, ^w
-#l::send, ^l
-#q::Send, !{F4}
+#l::Send, ^l
+<#q::Send, !{F4}
 #z::Send, ^z
 
 
